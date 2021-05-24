@@ -1,0 +1,53 @@
+version: "3.7"
+
+services:
+  app:
+    build:
+      args:
+        user: tiagofinger
+        uid: 1000
+      context: ./.docker
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    image: casafy
+    container_name: casafy-app
+    restart: unless-stopped
+    working_dir: /var/www/
+    volumes:
+      - ./src:/var/www
+      - ./.docker/php/upload.ini:/usr/local/etc/php/conf.d/upload.ini
+    networks:
+      - casafy-network
+  db:
+    image: mysql:5.7
+    container_name: casafy-db
+    restart: unless-stopped
+    tty: true
+    ports:
+      - 3007:3006
+    environment:
+      MYSQL_DATABASE: casafy
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ./.docker/mysql/my.cnf:/etc/mysql/my.cnf
+    networks:
+      - casafy-network
+  nginx:
+    image: nginx:1.19.9-alpine
+    container_name: casafy-nginx
+    restart: unless-stopped
+    ports:
+      - 8002:80
+    depends_on:
+      - app
+    volumes:
+      - ./src:/var/www
+      - ./.docker/nginx:/etc/nginx/conf.d
+    networks:
+      - casafy-network
+
+networks:
+  casafy-network:
+    driver: bridge
+
