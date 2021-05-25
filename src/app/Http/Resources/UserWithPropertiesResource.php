@@ -38,9 +38,7 @@ class UserWithPropertiesResource extends JsonResource implements MyUserWithPrope
             'user' => [
                 $attributes
             ],
-            'properties' => [
-                PropertyResource::collection($this->whenLoaded('properties')),
-            ]
+            'properties' => PropertyResource::collection($this->whenLoaded('properties')),
         ];
     }
 }

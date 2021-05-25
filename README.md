@@ -11,7 +11,7 @@
 docker-compose up -d --build
 ```
 
-**After finish docker operations, you should run database operations.**
+**After finish docker operations, you should run script operations.**
 
 ```
 ./scripts.sh
