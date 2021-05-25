@@ -37,7 +37,7 @@ class PropertyController extends Controller
     /**
      * PropertyController constructor.
      * @param MyPropertyCollection $propertyCollection
-     * @param PropertyResource $propertyResource
+     * @param MyPropertyResource $propertyResource
      * @param MyNoDataResource $noDataResource
      * @param MyPropertyRepository $propertyRepository
      */
