@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\MyLibrary\Repositories;
 
 use App\MyLibrary\Classes\MyModelAbstract;

@@ -2,10 +2,10 @@
 
 namespace App\Http\Resources;
 
-use App\MyLibrary\Interfaces\MyResource;
+use App\MyLibrary\Interfaces\MyNoDataResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class NoDataResource extends JsonResource implements MyResource
+class NoDataResource extends JsonResource implements MyNoDataResource
 {
     /**
      * NoDataResource constructor.

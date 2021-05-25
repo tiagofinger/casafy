@@ -24,9 +24,7 @@ class UserTest extends TestCase
                 $json->has('data.0', fn ($json) =>
                     $json->where('name', 'User 1')
                         ->where('email', 'user1@gmail.com')
-                        ->etc()
-                )
-            );
+                        ->etc()));
     }
 
     public function testCreateSuccess()
@@ -40,9 +38,7 @@ class UserTest extends TestCase
                 $json->has('data', fn ($json) =>
                     $json->where('name', 'User 1')
                         ->where('email', 'user1@gmail.com')
-                        ->etc()
-                    )
-            );
+                        ->etc()));
     }
 
     public function testTryCreateWithNameError()
@@ -96,9 +92,7 @@ class UserTest extends TestCase
                 $json->has('data', fn ($json) =>
                     $json->where('name', 'User 1')
                         ->where('email', 'user1@gmail.com')
-                        ->etc()
-                )
-            );
+                        ->etc()));
     }
 
     public function testTryUpdateWithNameError()

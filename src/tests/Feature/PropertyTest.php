@@ -43,9 +43,7 @@ class PropertyTest extends TestCase
                         ->where('discount', $property->discount)
                         ->where('owner_id', $property->owner_id)
                         ->where('expired', $property->expired)
-                        ->etc()
-                )
-            );
+                        ->etc()));
     }
 
     public function testListWithCreatedDateAfterThreeMonthsSuccess()
@@ -99,17 +97,13 @@ class PropertyTest extends TestCase
             ->assertJson(fn (AssertableJson $json) =>
                 $json->has('data.0', fn ($json) =>
                     $json->where('expired', true)
-                        ->etc()
-                )
+                        ->etc())
                 ->has('data.1', fn ($json) =>
                     $json->where('expired', true)
-                        ->etc()
-                )
+                        ->etc())
                 ->has('data.2', fn ($json) =>
                     $json->where('expired', true)
-                        ->etc()
-                )
-            );
+                        ->etc()));
     }
 
     public function testCreateSuccess()
@@ -139,9 +133,7 @@ class PropertyTest extends TestCase
                         ->where('total_area', 150)
                         ->where('purchased', false)
                         ->where('value', 180)
-                        ->etc()
-                )
-            );
+                        ->etc()));
     }
 
     public function testTryCreateWithError()
@@ -208,9 +200,7 @@ class PropertyTest extends TestCase
                         ->where('total_area', 150)
                         ->where('purchased', false)
                         ->where('value', 180)
-                        ->etc()
-                )
-            );
+                        ->etc()));
     }
 
     public function testTryWithOwnerIdIsInvalid()

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\MyLibrary\Classes;
-
 
 use App\MyLibrary\Interfaces\MyModel;
 use Illuminate\Database\Eloquent\Model;

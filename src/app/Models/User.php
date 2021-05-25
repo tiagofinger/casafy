@@ -6,11 +6,12 @@ use App\MyLibrary\Classes\MyModelAbstract;
 use App\MyLibrary\Interfaces\MyUserModel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
-use \App\Models\Property;
+use App\Models\Property;
 
 class User extends MyModelAbstract implements MyUserModel
 {
-    use HasFactory, Notifiable;
+    use HasFactory;
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.

@@ -2,11 +2,11 @@
 
 namespace App\Http\Requests;
 
-use App\MyLibrary\Interfaces\MyRequest;
+use App\MyLibrary\Interfaces\MyPropertyRequest;
 use App\Rules\PurchasedIsNotPermittedIfFalseAndMoreThan;
 use Illuminate\Foundation\Http\FormRequest;
 
-class PropertyRequest extends FormRequest implements MyRequest
+class PropertyRequest extends FormRequest implements MyPropertyRequest
 {
     /**
      * Determine if the user is authorized to make this request.

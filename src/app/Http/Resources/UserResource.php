@@ -2,11 +2,11 @@
 
 namespace App\Http\Resources;
 
-use App\MyLibrary\Interfaces\MyResource;
+use App\MyLibrary\Interfaces\MyUserResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Carbon\Carbon;
 
-class UserResource extends JsonResource implements MyResource
+class UserResource extends JsonResource implements MyUserResource
 {
     /**
      * UserResource constructor.

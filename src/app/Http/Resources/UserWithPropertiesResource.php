@@ -2,10 +2,10 @@
 
 namespace App\Http\Resources;
 
-use App\MyLibrary\Interfaces\MyResource;
+use App\MyLibrary\Interfaces\MyUserWithPropertiesResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class UserWithPropertiesResource extends JsonResource implements MyResource
+class UserWithPropertiesResource extends JsonResource implements MyUserWithPropertiesResource
 {
     /**
      * UserResource constructor.

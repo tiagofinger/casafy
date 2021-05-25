@@ -2,11 +2,11 @@
 
 namespace App\Http\Requests;
 
-use App\MyLibrary\Interfaces\MyRequest;
+use App\MyLibrary\Interfaces\MyUserRequest;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class UserRequest extends FormRequest implements MyRequest
+class UserRequest extends FormRequest implements MyUserRequest
 {
     /**
      * Determine if the user is authorized to make this request.

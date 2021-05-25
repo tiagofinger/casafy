@@ -2,32 +2,34 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\NoDataResource;
 use App\Http\Requests\UserRequest;
 use App\Http\Resources\UserResource;
 use App\Http\Resources\UserWithPropertiesResource;
 use App\Http\Resources\UserCollection;
-use App\MyLibrary\Interfaces\MyCollection;
-use App\MyLibrary\Interfaces\MyResource;
+use App\MyLibrary\Interfaces\MyNoDataResource;
+use App\MyLibrary\Interfaces\MyUserCollection;
 use App\MyLibrary\Interfaces\MyUserRepository;
+use App\MyLibrary\Interfaces\MyUserResource;
+use App\MyLibrary\Interfaces\MyUserWithPropertiesResource;
 use Illuminate\Http\JsonResponse;
+use App\MyLibrary\Interfaces\MyUserRequest;
 
 class UserController extends Controller
 {
     /**
-     * @var UserCollection
+     * @var MyUserCollection
      */
-    private UserCollection $userCollection;
+    private MyUserCollection $userCollection;
 
     /**
-     * @var UserResource
+     * @var MyUserResource
      */
-    private UserResource $userResource;
+    private MyUserResource $userResource;
 
     /**
-     * @var NoDataResource
+     * @var MyNoDataResource
      */
-    private NoDataResource $noDataResource;
+    private MyNoDataResource $noDataResource;
 
     /**
      * @var MyUserRepository
@@ -35,26 +37,25 @@ class UserController extends Controller
     private MyUserRepository $userRepository;
 
     /**
-     * @var UserWithPropertiesResource
+     * @var MyUserWithPropertiesResource
      */
     private $userWithPropertiesResource;
 
     /**
      * UserController constructor.
-     * @param UserCollection $userCollection
-     * @param UserResource $userResource
-     * @param UserWithPropertiesResource $userWithPropertyResource
-     * @param NoDataResource $noDataResource
+     * @param MyUserCollection $userCollection
+     * @param MyUserResource $userResource
+     * @param MyUserWithPropertiesResource $userWithPropertyResource
+     * @param MyNoDataResource $noDataResource
      * @param MyUserRepository $userRepository
      */
     public function __construct(
-        UserCollection $userCollection,
-        UserResource $userResource,
-        UserWithPropertiesResource $UserWithPropertiesResource,
-        NoDataResource $noDataResource,
+        MyUserCollection $userCollection,
+        MyUserResource $userResource,
+        MyUserWithPropertiesResource $UserWithPropertiesResource,
+        MyNoDataResource $noDataResource,
         MyUserRepository $userRepository
-    )
-    {
+    ) {
         $this->userCollection = $userCollection;
         $this->userResource = $userResource;
         $this->userWithPropertiesResource = $UserWithPropertiesResource;
@@ -63,9 +64,9 @@ class UserController extends Controller
     }
 
     /**
-     * @return MyCollection
+     * @return UserCollection
      */
-    public function index(): MyCollection
+    public function index(): UserCollection
     {
         $users = $this->userRepository->all();
 
@@ -74,9 +75,9 @@ class UserController extends Controller
 
     /**
      * @param UserRequest $request
-     * @return MyResource
+     * @return UserResource
      */
-    public function store(UserRequest $request): MyResource
+    public function store(MyUserRequest $request): UserResource
     {
         $user = $this->userRepository->save($request->all());
 
@@ -87,7 +88,7 @@ class UserController extends Controller
      * @param int $id
      * @return UserResource
      */
-    public function show(int $id): MyResource
+    public function show(int $id): UserResource
     {
         $user = $this->userRepository->findOrFail($id);
 
@@ -95,11 +96,11 @@ class UserController extends Controller
     }
 
     /**
-     * @param UserRequest $request
+     * @param MyUserRequest $request
      * @param int $id
      * @return UserResource
      */
-    public function update(UserRequest $request, int $id): MyResource
+    public function update(MyUserRequest $request, int $id): UserResource
     {
         $user = $this->userRepository->update($id, $request->all());
 
@@ -121,9 +122,9 @@ class UserController extends Controller
 
     /**
      * @param $id
-     * @return JsonResponse|object
+     * @return UserWithPropertiesResource
      */
-    public function properties(int $id): MyResource
+    public function properties(int $id): UserWithPropertiesResource
     {
         $properties = $this->userRepository->properties($id);
 

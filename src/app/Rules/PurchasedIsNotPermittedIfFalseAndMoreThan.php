@@ -38,10 +38,7 @@ class PurchasedIsNotPermittedIfFalseAndMoreThan implements Rule
      */
     public function passes($attribute, $value)
     {
-        if (
-            (!$this->propertyId && !$this->userId) ||
-            $value
-        ) {
+        if ((!$this->propertyId && !$this->userId) || $value) {
             return true;
         }
 

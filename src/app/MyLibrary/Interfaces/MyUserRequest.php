@@ -2,6 +2,6 @@
 
 namespace App\MyLibrary\Interfaces;
 
-interface MyResource extends MyCollection
+interface MyUserRequest extends MyRequest
 {
 }

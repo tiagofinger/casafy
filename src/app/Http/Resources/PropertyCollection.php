@@ -2,10 +2,10 @@
 
 namespace App\Http\Resources;
 
-use App\MyLibrary\Interfaces\MyCollection;
+use App\MyLibrary\Interfaces\MyPropertyCollection;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class PropertyCollection extends ResourceCollection implements MyCollection
+class PropertyCollection extends ResourceCollection implements MyPropertyCollection
 {
     /**
      * PropertyCollection constructor.

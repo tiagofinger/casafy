@@ -2,10 +2,10 @@
 
 namespace App\Http\Resources;
 
-use App\MyLibrary\Interfaces\MyCollection;
+use App\MyLibrary\Interfaces\MyUserCollection;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class UserCollection extends ResourceCollection implements MyCollection
+class UserCollection extends ResourceCollection implements MyUserCollection
 {
     /**
      * UserCollection constructor.

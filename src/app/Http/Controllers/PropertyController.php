@@ -2,33 +2,32 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\PropertyPurchasedRequest;
-use App\Http\Resources\NoDataResource;
-use App\Models\Property;
-use App\Http\Requests\PropertyRequest;
 use App\Http\Resources\PropertyResource;
-use App\MyLibrary\Interfaces\MyCollection;
+use App\MyLibrary\Interfaces\MyNoDataResource;
+use App\MyLibrary\Interfaces\MyPropertyCollection;
+use App\MyLibrary\Interfaces\MyPropertyPurchasedRequest;
 use App\MyLibrary\Interfaces\MyPropertyRepository;
-use App\MyLibrary\Interfaces\MyResource;
+use App\MyLibrary\Interfaces\MyPropertyRequest;
+use App\MyLibrary\Interfaces\MyPropertyResource;
 use Illuminate\Http\JsonResponse;
 use App\Http\Resources\PropertyCollection;
 
 class PropertyController extends Controller
 {
     /**
-     * @var PropertyCollection
+     * @var MyPropertyCollection
      */
-    private PropertyCollection $propertyCollection;
+    private MyPropertyCollection $propertyCollection;
 
     /**
-     * @var PropertyResource
+     * @var MyPropertyResource
      */
-    private PropertyResource $propertyResource;
+    private MyPropertyResource $propertyResource;
 
     /**
-     * @var NoDataResource
+     * @var MyNoDataResource
      */
-    private NoDataResource $noDataResource;
+    private MyNoDataResource $noDataResource;
 
     /**
      * @var MyPropertyRepository
@@ -37,12 +36,15 @@ class PropertyController extends Controller
 
     /**
      * PropertyController constructor.
-     * @param Property $propertyModel
+     * @param MyPropertyCollection $propertyCollection
+     * @param PropertyResource $propertyResource
+     * @param MyNoDataResource $noDataResource
+     * @param MyPropertyRepository $propertyRepository
      */
     public function __construct(
-        PropertyCollection $propertyCollection,
-        PropertyResource $propertyResource,
-        NoDataResource $noDataResource,
+        MyPropertyCollection $propertyCollection,
+        MyPropertyResource $propertyResource,
+        MyNoDataResource $noDataResource,
         MyPropertyRepository $propertyRepository
     )
     {
@@ -55,7 +57,7 @@ class PropertyController extends Controller
     /**
      * @return PropertyCollection
      */
-    public function index(): MyCollection
+    public function index(): PropertyCollection
     {
         $properties = $this->propertyRepository->all();
 
@@ -63,10 +65,10 @@ class PropertyController extends Controller
     }
 
     /**
-     * @param PropertyRequest $request
-     * @return JsonResponse|object
+     * @param MyPropertyRequest $request
+     * @return PropertyResource
      */
-    public function store(PropertyRequest $request): MyResource
+    public function store(MyPropertyRequest $request): PropertyResource
     {
         $properties = $this->propertyRepository->save($request->all());
 
@@ -77,7 +79,7 @@ class PropertyController extends Controller
      * @param int $id
      * @return PropertyResource
      */
-    public function show(int $id): MyResource
+    public function show(int $id): PropertyResource
     {
         $property = $this->propertyRepository->findOrFail($id);
 
@@ -85,11 +87,11 @@ class PropertyController extends Controller
     }
 
     /**
-     * @param PropertyRequest $request
+     * @param MyPropertyRequest $request
      * @param int $id
      * @return PropertyResource
      */
-    public function update(PropertyRequest $request, int $id): MyResource
+    public function update(MyPropertyRequest $request, int $id): PropertyResource
     {
         $property = $this->propertyRepository->update($id, $request->all());
 
@@ -97,11 +99,11 @@ class PropertyController extends Controller
     }
 
     /**
-     * @param PropertyPurchasedRequest $request
+     * @param MyPropertyPurchasedRequest $request
      * @param int $id
-     * @return MyResource
+     * @return JsonResponse
      */
-    public function updatePurchased(PropertyPurchasedRequest $request, int $id): JsonResponse
+    public function updatePurchased(MyPropertyPurchasedRequest $request, int $id): JsonResponse
     {
         $property = $this->propertyRepository->update($id, $request->all('purchased'));
 

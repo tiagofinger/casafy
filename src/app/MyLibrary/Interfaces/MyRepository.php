@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\MyLibrary\Interfaces;
-
 
 interface MyRepository
 {
